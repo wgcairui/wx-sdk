@@ -1,0 +1,17 @@
+{
+  "name": "@cairui/wx-sdk",
+  "version": "1.0.0",
+  "description": "封装wx开发平台,小程序,公众号的部分API",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wgcairui@icloud.com",
+  "license": "MIT",
+  "devDependencies": {
+    "types-uart": "^1.0.18"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
