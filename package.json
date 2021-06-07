@@ -13,5 +13,8 @@
   },
   "dependencies": {
     "axios": "^0.21.1"
+  },
+  "repository": {
+    "url": "https://github.com/wgcairui/wx-sdk.git"
   }
 }
