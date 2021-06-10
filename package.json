@@ -1,10 +1,10 @@
 {
   "name": "@cairui/wx-sdk",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "封装wx开发平台,小程序,公众号的部分API",
-  "main": "index.ts",
+  "main": "main/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "push": "tsc ;npm publish --access public"
   },
   "author": "wgcairui@icloud.com",
   "license": "MIT",

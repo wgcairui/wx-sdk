@@ -1,5 +1,5 @@
 import { fetch } from "./fetch"
-import { createDecipheriv } from "crypto";
+
 /**
  * 微信小程序api
  */
@@ -9,7 +9,7 @@ export default class WxApp {
     /**
      * 微信请求密匙
      */
-    private token: string
+    token: string
     /**
      * 密匙请求时间戳
      */
@@ -91,41 +91,6 @@ export default class WxApp {
     async SendsubscribeMessage(postData: Uart.WX.wxsubscribeMessage) {
         const url = `https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token=${await this.getToken()}`
         return await fetch({ url, method: 'POST', data: postData })
-    }
-
-    /**
-   * @method 解密微信加密数据
-   * @param SessionKey seccess 
-   * @param encryptedData 加密数据
-   * @param iv 
-   * @returns 返回解密之后的对象
-   */
-    BizDataCryptdecryptData(SessionKey: string, encryptedData: string, iv: string) {
-        const sessionKey = Buffer.from(SessionKey, "base64");
-        const BufferEncryptedData = Buffer.from(encryptedData, "base64");
-        const BufferIv = Buffer.from(iv, "base64");
-        let decodeParse;
-        try {
-            // 解密
-            const decipher = createDecipheriv(
-                "aes-128-cbc",
-                sessionKey,
-                BufferIv
-            ) as any
-            // 设置自动 padding 为 true，删除填充补位
-            decipher.setAutoPadding(true);
-            const decode = decipher.update(BufferEncryptedData, "binary", "utf8");
-            const decode2 = decode + decipher.final("utf8");
-
-            decodeParse = JSON.parse(decode2);
-        } catch (error) {
-            throw new Error("Illegal Buffer");
-        }
-
-        if (decodeParse.watermark.appid !== this.appid) {
-            throw new Error("Illegal Buffer");
-        }
-        return decodeParse;
     }
 
     /**
